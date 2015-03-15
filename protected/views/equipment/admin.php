@@ -1,0 +1,160 @@
+<?php
+$this->breadcrumbs=array(
+	'Equipments'=>array('index'),
+	'Manage',
+);
+
+$this->menu=array(
+array('label'=>'List Equipment','url'=>array('index')),
+array('label'=>'Create Equipment','url'=>array('create')),
+);
+
+Yii::app()->clientScript->registerScript('search', "
+$('.search-button').click(function(){
+$('.search-form').toggle();
+return false;
+});
+$('.search-form form').submit(function(){
+$.fn.yiiGridView.update('equipment-grid', {
+data: $(this).serialize()
+});
+return false;
+});
+");
+?>
+<style>
+#equipment-grid
+{
+	width:1070px;
+}
+
+#equipment-grid_c7
+{
+	width:80px;
+}
+
+</style>
+
+<h1>Manage Equipments</h1>
+
+<p>
+	You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>
+		&lt;&gt;</b>
+	or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
+</p>
+
+<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button btn')); ?>
+<div class="search-form" style="display:none">
+	<?php $this->renderPartial('_search',array(
+	'model'=>$model,
+)); ?>
+</div><!-- search-form -->
+
+<?php 
+
+//line to add paging
+$pageSize=Yii::app()->user->getState('pageSize',Yii::app()->params['defaultPageSize']);
+
+
+$this->widget('bootstrap.widgets.TbGridView',array(
+    'itemsCssClass'=>'table-striped table-hover',
+'id'=>'equipment-grid',
+'dataProvider'=>$model->search(),
+'filter'=>$model,
+'columns'=>array(
+		'id',
+		'name',
+		//'id_category',
+ array( 
+    'name'=>'id_category',
+    'value'=>'$data->idCategory->name',
+    ),
+    array( 
+    'name'=>'id_manufacturer',
+    'value'=>'$data->idManufacturer->name',
+    ),
+		//'id_manufacturer',
+		'model',
+    array( 
+    'name'=>'sold_status',
+    'value'=>'$data->soldstatus($data->sold_status)',
+    ),
+		'serial_number',
+		/*
+		'year',
+		
+		'condition',
+		'hits',
+		'status',
+		'posted_on',
+		'detail',
+		'feature',
+		'note',
+		'is_featured',
+		'video',
+		'year_of_manufacturer',
+		'price_type',
+		'price_start',
+		'price_end',
+		'lease_time',
+		'lease_price',
+		'price',
+		*/
+array(
+     'class'=>'CButtonColumn',
+     'template'=>'{Images}{Videos}{Meta}{Sold}{Not Sold}',
+     'buttons'=>array(
+               'Images'=>array(
+                         'url'=>'$this->grid->controller->createUrl("/EqImages/create", array("eqid"=>$data->id))',
+                   'imageUrl'=>Yii::app()->request->baseUrl.'/images/image.png',      
+                   'click'=>'function(){$("#cru-frame").attr("src",$(this).attr("href")); $("#cru-dialog").dialog("open");  return false;}',
+                         ),
+                'Videos'=>array(
+                         'url'=>'$this->grid->controller->createUrl("/EqVideos/create", array("eqid"=>$data->id))',
+                    'imageUrl'=>Yii::app()->request->baseUrl.'/images/video.png',     
+                    'click'=>'function(){$("#cru-frame").attr("src",$(this).attr("href")); $("#cru-dialog").dialog("open");  return false;}',
+                         ),
+         'Meta'=>array(
+                         'url'=>'$this->grid->controller->createUrl("/metaContent/create", array("eq_id"=>$data->id))',
+                   'imageUrl'=>Yii::app()->request->baseUrl.'/images/meta.jpg',      
+                   'click'=>'function(){$("#cru-frame").attr("src",$(this).attr("href")); $("#cru-dialog").dialog("open");  return false;}',
+                         ),
+                                  'Sold'=>array(
+                                      
+                         'url'=>'$this->grid->controller->createUrl("/Equipment/sold", array("eqid"=>$data->id))',
+                         'imageUrl'=>Yii::app()->request->baseUrl.'/images/sold.jpg',
+                                      'click'=>'function(){$("#cru-frame").attr("src",$(this).attr("href")); $("#cru-dialog").dialog("open");  return false;}',
+                                      'visible'=>'$data->sold_status==1',
+
+                         ),
+         
+                'Not Sold'=>array(
+                                      
+                         'url'=>'$this->grid->controller->createUrl("/Equipment/sold", array("eqid"=>$data->id))',
+                    'imageUrl'=>Yii::app()->request->baseUrl.'/images/notsold.jpg',     
+                    'click'=>'function(){$("#cru-frame").attr("src",$(this).attr("href")); $("#cru-dialog").dialog("open");  return false;}',
+                                      'visible'=>'$data->sold_status==0',
+
+                         ),
+         
+                ),
+          
+       // 'buttons'=>array(
+               
+         //       ),
+       
+       
+       ),
+//array(
+//'class'=>'bootstrap.widgets.TbButtonColumn',
+//),
+
+array(
+                        'class'=>'bootstrap.widgets.TbButtonColumn',
+                        'header'=>CHtml::dropDownList('pageSize',$pageSize,array(10=>10,20=>20,50=>50,100=>100,200=>200,400=>400),array(
+                                  'onchange'=>"$.fn.yiiGridView.update('equipment-grid',{ data:{pageSize: $(this).val() }})",
+                    )),
+                ),
+
+),
+)); ?>

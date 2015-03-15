@@ -1,0 +1,53 @@
+body
+{
+	font-family: sans-serif;
+}
+
+thead th
+{
+	background-color: #7F80B0;
+}
+
+a.sort-link 
+{
+	color: white;
+	font-family: sans-serif;
+}
+
+a.sort-link:hover
+{
+	color: #DFDFFA;
+}
+
+p,a,table
+{
+	font-family: sans-serif;
+}
+
+.table-striped tbody>tr:nth-child(odd)>td,.table-striped tbody>tr:nth-child(odd)>th
+{
+	background-color:#E0E1FF !important;
+}
+
+.navbar-inverse .navbar-inner
+{
+	background-image: linear-gradient(to bottom, #222222, #7F80B0) !important;
+}
+
+#mainmenu ul li a:hover, #mainmenu ul li.active a 
+{
+	color: #ffffff;
+	background-color: #7F80B0;
+}
+
+#page
+{
+	background-color:#F5F6FD;
+}
+
+.btn-primary
+{
+	background-image: linear-gradient(to bottom, #5E60A5, #7F80B0) !important;
+}
+
+button.btn:hover,button.btn:focus{background-color:#7F80B0 !important; color:#F5F6FD;text-decoration:none;background-position:0 -15px;-webkit-transition:background-position 0.1s linear;-moz-transition:background-position 0.1s linear;-o-transition:background-position 0.1s linear;transition:background-position 0.1s linear;}

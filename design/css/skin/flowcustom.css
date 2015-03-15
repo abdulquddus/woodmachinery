@@ -1,0 +1,83 @@
+/* fixed width container */
+#player {
+  width: 300px;
+}
+
+/* scrollable */
+div.scrollable-wrap {
+  display: block;
+  width: 300px;
+  height: 78px;
+}
+.scrollable-wrap .scrollable 
+{
+	position: relative;
+	overflow: hidden;
+	float: left;
+	width: 250px;
+	height: 76px;
+	margin-left: -10px;
+}
+/* playlist items == scrollable items */
+.scrollable .items {
+  width: 999em;
+  position: absolute;
+}
+.scrollable .items div {
+  float: left;
+}
+.scrollable .items span {
+  float: left;
+ /* padding: 10px;*/
+  margin: 10px;
+  width: 60px;
+  color: #282828;
+  background-color: rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background: -webkit-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+  background: -moz-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+  background: -ms-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+.scrollable .items span.is-active {
+  background: -webkit-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+  background: -moz-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+  background: -ms-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+  color: #900;
+}
+.scrollable .items span.is-paused {
+  color: #f00;
+}
+/* scrollable prev and next buttons */
+.scrollable-wrap a.prev, .scrollable-wrap a.next {
+  background: url(../../images/media/img/scrollable/arrow/hori_large.png) no-repeat;
+  display: block;
+  float: left;
+  width: 30px;
+  height: 30px;
+  margin: 25px 0;
+  font-size: 0;
+  cursor: pointer;
+}
+.scrollable-wrap a.next {
+  background-position: 0 -30px;
+  clear: right;
+  margin-left: -9px;
+}
+.scrollable-wrap a.prev:hover {
+  background-position: -30px 0;
+}
+.scrollable-wrap a.prev:active {
+  background-position: -60px 0;
+}
+.scrollable-wrap a.next:hover {
+  background-position: -30px -30px;
+}
+.scrollable-wrap a.next:active {
+  background-position: -60px -30px;
+}

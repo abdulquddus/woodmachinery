@@ -1,0 +1,51 @@
+@media all 
+{
+	
+        
+    .topmainheaderwrapper{
+        display: none;
+    }
+    
+   .active {
+       pointer-events: none;
+       cursor: default;
+    } 
+    .navbar, nav{
+        display: none;
+        
+    }
+    
+    footer {background: none;
+}
+    
+   .logo{ display: none }
+
+.footer{
+        display:none;
+    }
+        .equipmentmodelwrapperright
+	{
+		width:100%;
+	}
+	
+	.equipmentmodelmainwrapper
+	{
+		padding-left:20px;
+	}
+	
+	.topmainheaderwrapper
+	{
+		background:none;
+	}
+	
+	.priceheading
+	{
+		margin-top:20px;
+		text-align:left;
+	}
+	
+	div img
+	{
+		border:2px solid black;
+	}
+}
